@@ -1,4 +1,4 @@
-import type { Project } from './cards/types';
+import type { Project } from './types';
 
 export const initialProjects: Project[] = [
   {

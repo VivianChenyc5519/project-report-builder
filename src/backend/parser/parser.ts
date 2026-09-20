@@ -1,13 +1,13 @@
 import * as XLSX from "xlsx";
 import { fileToImageUrl } from "../utils";
 
-import { createCard } from "../cards/cardFactory";
+import { createCard } from "../cards/cardService";
 import type {
   SnippetCard,
   MilestoneCard,
   RiskLevel,
   CardSource,
-} from "../cards/types";
+} from "../types";
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +20,7 @@ type ParsedRow = Record<string, string>;
 /* Type that needs semantic classification */
 type StructuredCardType = "metric" | "milestone" | "risk";
 
-type AutomaticInput = {
+export type AutomaticInput = {
   projectId: string;
   rawText: string;
   files: File[];
@@ -48,6 +48,10 @@ export async function parseAutomaticInput({
   files,
 }: AutomaticInput): Promise<SnippetCard[]> {
   const cards: SnippetCard[] = [];
+
+  if (rawText.trim() === '') {
+    
+  }
 
   /*
    * Parse pasted/raw text first.

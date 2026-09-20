@@ -1,0 +1,6 @@
+Budget used: 63%.
+The reporting dashboard is planned for next week.
+Open defects: 12.
+There is a blocker because the vendor API might delay testing; likelihood: high; severity: medium; mitigation: prepare mock responses.
+The staging deployment finished successfully.
+Customer adoption: 42%.

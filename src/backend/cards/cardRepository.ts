@@ -1,5 +1,5 @@
-import { initialProjects } from '../mockData';
-import type { Project, SnippetCard } from './types';
+import { initialProjects } from '../database';
+import type { Project, SnippetCard } from '../types';
 
 let database: Project[] = structuredClone(initialProjects);
 
@@ -16,11 +16,10 @@ export function getProjectById(
 }
 
 export function saveCard(
-  projectId: string,
   card: SnippetCard
 ): void {
   const project = database.find(
-    (project) => project.id === projectId
+    (project) => project.id === card.projectId
   );
 
   if (!project) {
@@ -64,6 +63,13 @@ export function deleteStoredCard(
 
   if (!project) {
     throw new Error('Project not found');
+  }
+  const cardExists = project.cards.some(
+    (card) => card.id === cardId
+  );
+
+  if (!cardExists) {
+    throw new Error('Card not found');
   }
 
   project.cards = project.cards.filter(

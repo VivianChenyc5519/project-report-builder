@@ -1,0 +1,5 @@
+title,value,status,date,probability,impact,mitigation,description
+API latency,280 ms,,,,,,
+Migration phase 2,,in-progress,2026-10-03,,,,Move remaining endpoints to the new API
+Security approval delay,,,,medium,high,Complete review early,Security approval may delay production release
+Completion,87%,,,,,,

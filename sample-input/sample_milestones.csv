@@ -1,0 +1,4 @@
+title,status,date,description
+API migration,in-progress,2026-10-03,Move remaining endpoints to the new API
+Authentication rollout,completed,2026-09-15,Authentication migration completed successfully
+Reporting dashboard,planned,2026-10-12,Deploy the first reporting dashboard release

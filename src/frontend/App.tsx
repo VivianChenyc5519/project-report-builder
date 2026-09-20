@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { initialProjects } from "../backend/mockData";
+import { initialProjects } from "../backend/database";
 import type {
   CardType,
   ImageCard,
@@ -10,16 +10,16 @@ import type {
   SnippetCard,
   CardStatus,
   RiskLevel,
-} from "../backend/cards/types";
+} from "../backend/types";
 import { parseAutomaticInput } from "../backend/parser/parser";
 import {
   createCard,
   mergeCards,
-  createMetricEntry,
+  addMetricCardEntry,
   removeMetricEntry,
   updateMetricEntry,
   updateCard,
-} from "../backend/cards/cardFactory";
+} from "../backend/cards/cardService";
 import { fileToImageUrl } from "../backend/utils";
 
 // const uid = (prefix: string) =>
@@ -841,10 +841,10 @@ function DetailModal({
           <RiskDetail card={card} editing={editing} onChange={onChange} />
         )}
 
-        <p className="shortcut-hint">
+        {/* <p className="shortcut-hint">
           ⌘C copies this card internally · ⌘V merges a copied card of the same
           type
-        </p>
+        </p> */}
 
         {shareOpen && (
           <div className="share-popover">
@@ -1004,10 +1004,7 @@ function MetricDetail({
   onChange: (card: SnippetCard) => void;
 }) {
   const addEntry = () =>
-    onChange({
-      ...card,
-      entries: [...card.entries, createMetricEntry()],
-    });
+    onChange(addMetricCardEntry(card));
 
   const removeEntry = (id: string) => onChange(removeMetricEntry(card, id));
 

@@ -672,9 +672,6 @@ button::before {
   font-size: 14px;
 }
 
-.image-detail {
-  padding-top: 24px;
-}
 .image-placeholder {
   min-height: 250px;
   border: 2px dashed #b9b9b9;
@@ -686,6 +683,16 @@ button::before {
   gap: 6px;
   color: #555;
 }
+
+.image-placeholder img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  display: block;
+  align-content: center;
+  place-items: center;
+}
+
 .image-placeholder.compact {
   min-height: 110px;
   margin-top: 12px;
