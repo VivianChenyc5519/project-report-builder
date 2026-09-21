@@ -2,7 +2,7 @@ import type { Project } from './types';
 
 export const initialProjects: Project[] = [
   {
-    id: 'project-1',
+    id: '1',
     name: 'Project 1',
     cards: [
       {
@@ -10,7 +10,7 @@ export const initialProjects: Project[] = [
         source: 'manual',
         projectId: '1',
         type: 'metric',
-        title: 'Card Title',
+        title: 'This is Metric 1',
         entries: [
           { id: 'm1', title: 'API latency', value: '12%' },
           { id: 'm2', title: 'Some other metric', value: '87%' }
@@ -21,7 +21,7 @@ export const initialProjects: Project[] = [
         source: 'manual',
         projectId: '1',
         type: 'milestone',
-        title: 'Card Title',
+        title: 'And there you go milestone 1',
         description: 'A milestone update for the project.',
         status: 'in-progress'
       },
@@ -30,7 +30,7 @@ export const initialProjects: Project[] = [
         projectId: '1',
         id: 'image-1',
         type: 'image',
-        title: 'Card title',
+        title: 'And yet another image',
         imageUrl: '',
         caption: 'Image asset placeholder',
         altText: 'Project image placeholder'
@@ -38,7 +38,7 @@ export const initialProjects: Project[] = [
     ]
   },
   {
-    id: 'project-2',
+    id: '2',
     name: 'Project 2',
     cards: [
       {

@@ -127,11 +127,25 @@ export default function App() {
     copied: SnippetCard,
   ): SnippetCard => {
     // Copy of different type or copy of cards in different projects are not allowed
+    
     if (target.type !== copied.type) return target;
     if (target.projectId !== copied.projectId) return target;
-    mergeCards(target, copied);
+    const merged = mergeCards(target, copied);
 
-    return target;
+    setProjects((current) =>
+      current.map((project) =>
+        project.id === target.projectId
+          ? {
+              ...project,
+              cards: project.cards.map((card) =>
+                card.id === target.id ? merged : card,
+              ),
+            }
+          : project,
+      ),
+    );
+
+    return merged;
   };
 
   useEffect(() => {
@@ -146,7 +160,7 @@ export default function App() {
         setInternalClipboard(structuredClone(detailCard));
         flash("Card copied inside Project Builder");
       }
-
+      console.log(internalClipboard, detailCard);
       if (event.key.toLowerCase() === "v" && internalClipboard) {
         event.preventDefault();
         if (internalClipboard.type !== detailCard.type) {
@@ -1003,8 +1017,7 @@ function MetricDetail({
   editing: boolean;
   onChange: (card: SnippetCard) => void;
 }) {
-  const addEntry = () =>
-    onChange(addMetricCardEntry(card));
+  const addEntry = () => onChange(addMetricCardEntry(card));
 
   const removeEntry = (id: string) => onChange(removeMetricEntry(card, id));
 
@@ -1169,21 +1182,27 @@ function ImageDetail({
             Title
             <input
               value={card.title}
-              onChange={(e) => onChange(updateCard(card, {title: e.target.value}))}
+              onChange={(e) =>
+                onChange(updateCard(card, { title: e.target.value }))
+              }
             />
           </label>
           <label className="field-label">
             Caption
             <input
               value={card.caption ?? ""}
-              onChange={(e) => onChange(updateCard(card, {caption: e.target.value}))}
+              onChange={(e) =>
+                onChange(updateCard(card, { caption: e.target.value }))
+              }
             />
           </label>
           <label className="field-label">
             Alt text
             <input
               value={card.altText}
-              onChange={(e) => onChange(updateCard(card, {altText: e.target.value}))}
+              onChange={(e) =>
+                onChange(updateCard(card, { altText: e.target.value }))
+              }
             />
           </label>
         </div>
